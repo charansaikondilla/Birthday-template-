@@ -291,8 +291,13 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
   return (
     <div
       ref={rootRef}
-      className="relative h-screen w-screen overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-hidden bg-black"
-      style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
+      className="relative h-screen w-screen overflow-y-auto snap-y snap-proximity [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-hidden bg-black"
+      style={{ 
+        scrollBehavior: 'smooth', 
+        WebkitOverflowScrolling: 'touch',
+        scrollSnapType: 'y proximity',
+        overscrollBehavior: 'contain'
+      }}
     >
       {/* Optimized Starry Night Sky - Reduced elements for performance */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -697,7 +702,12 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
               }}
               data-number={number}
               className={'h-screen w-full snap-center flex items-center ' + (isMobileView ? 'px-6 py-8' : 'px-20') + ' relative z-10 ' + (isOdd ? 'justify-start' : 'justify-end')}
-              style={{ minHeight: isMobileView ? '100vh' : 'auto', touchAction: 'pan-y' }}
+              style={{ 
+                minHeight: isMobileView ? '100vh' : 'auto', 
+                touchAction: 'pan-y',
+                scrollSnapAlign: 'center',
+                scrollSnapStop: 'normal'
+              }}
             >
               <div className={'flex items-center ' + (isMobileView ? 'gap-6 flex-col py-4' : 'gap-8') + ' ' + (isOdd ? (isMobileView ? '' : 'flex-row') : (isMobileView ? '' : 'flex-row-reverse'))}>
 
