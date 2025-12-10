@@ -292,6 +292,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
     <div
       ref={rootRef}
       className="relative h-screen w-screen overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-hidden bg-black"
+      style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
     >
       {/* Optimized Starry Night Sky - Reduced elements for performance */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -438,7 +439,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           >
             {/* Car positioned in front of line - bidirectional design */}
-            <g transform={'translate(-60, -35) scale(' + (isMobileView ? '1.8' : '2.5') + ')'}>
+            <g transform={'translate(-60, -35) scale(' + (isMobileView ? '2.8' : '2.5') + ')'}>
               {/* Enhanced shadow with blur */}
               <ellipse cx="30" cy="35" rx="28" ry="6" fill="rgba(0,0,0,0.4)" filter="url(#shadowBlur)" />
 
@@ -695,17 +696,19 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 else pageRefs.current.delete(number);
               }}
               data-number={number}
-              className={'h-screen w-full snap-center flex items-center ' + (isMobileView ? 'px-8' : 'px-20') + ' relative z-10 ' + (isOdd ? 'justify-start' : 'justify-end')}
+              className={'h-screen w-full snap-center flex items-center ' + (isMobileView ? 'px-6 py-8' : 'px-20') + ' relative z-10 ' + (isOdd ? 'justify-start' : 'justify-end')}
+              style={{ minHeight: isMobileView ? '100vh' : 'auto', touchAction: 'pan-y' }}
             >
-              <div className={'flex items-center ' + (isMobileView ? 'gap-4 flex-col' : 'gap-8') + ' ' + (isOdd ? (isMobileView ? '' : 'flex-row') : (isMobileView ? '' : 'flex-row-reverse'))}>
+              <div className={'flex items-center ' + (isMobileView ? 'gap-6 flex-col py-4' : 'gap-8') + ' ' + (isOdd ? (isMobileView ? '' : 'flex-row') : (isMobileView ? '' : 'flex-row-reverse'))}>
 
                 {/* Image placeholder */}
                 <div
                   className={'rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 relative ' + (isActive ? 'scale-110' : 'scale-100')}
                   style={{
-                    width: isMobileView ? '120px' : '180px',
-                    height: isMobileView ? '120px' : '180px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                    width: isMobileView ? '200px' : '220px',
+                    height: isMobileView ? '200px' : '220px',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    boxShadow: isActive ? '0 25px 50px -12px rgba(34, 211, 238, 0.5), 0 0 30px rgba(34, 211, 238, 0.3)' : '0 20px 40px -10px rgba(0, 0, 0, 0.4)'
                   }}
                 >
                   <img
@@ -719,9 +722,9 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 </div>
 
                 {/* Number with bounce and glow */}
-                <div className={'text-center relative ' + (isMobileView ? 'order-first' : '')}>
+                <div className={'text-center relative ' + (isMobileView ? 'order-first mb-4' : '')}>
                   <h2
-                    className={'font-bold transition-all duration-300 ' + (isMobileView ? 'text-7xl' : 'text-9xl')}
+                    className={'font-bold transition-all duration-300 ' + (isMobileView ? 'text-8xl' : 'text-9xl')}
                     style={{
                       color: isActive ? '#22d3ee' : '#64748b',
                       textShadow: isActive
@@ -750,7 +753,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
 
                 {/* Enhanced Text Note Box - Large Aesthetic Design */}
                 <div
-                  className={'transition-all duration-500 rounded-2xl backdrop-blur-md border ' + (isMobileView ? 'w-full max-w-sm p-5' : 'w-96 p-6') + ' ' + (isActive ? 'scale-105 shadow-2xl' : 'scale-100 shadow-xl')}
+                  className={'transition-all duration-500 rounded-2xl backdrop-blur-md border ' + (isMobileView ? 'w-full max-w-md p-6' : 'w-96 p-6') + ' ' + (isActive ? 'scale-105 shadow-2xl' : 'scale-100 shadow-xl')}
                   style={{
                     background: isActive
                       ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(147, 51, 234, 0.2) 100%)'

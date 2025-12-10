@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
     <meta name="theme-color" content="#000000" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -13,14 +13,21 @@
       html, body {
         margin: 0;
         padding: 0;
-        overflow: hidden;
         width: 100%;
         height: 100%;
+        overflow: hidden;
         position: fixed;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: none;
       }
       #root {
         width: 100%;
         height: 100%;
+        overflow: hidden;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
       }
     </style>
   </head>
