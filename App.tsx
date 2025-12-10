@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NumberScroller } from './NumberScroller';
+import { useState } from 'react';
+import NumberScroller from './NumberScroller';
 
 function App() {
   const [activeNumber, setActiveNumber] = useState(1);

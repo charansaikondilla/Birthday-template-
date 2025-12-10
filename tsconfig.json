@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["."],
+  "include": ["main.tsx", "App.tsx", "NumberScroller.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
