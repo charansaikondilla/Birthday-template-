@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, FC } from 'react';
 
 const NUMBERS = Array.from({ length: 22 }, (_, i) => i + 1);
 const TOTAL_NUMBERS = 22;
@@ -149,7 +149,7 @@ interface NumberScrollerProps {
   isMobileView?: boolean;
 }
 
-export const NumberScroller: React.FC<NumberScrollerProps> = ({ activeNumber, onNumberChange, isMobileView = false }) => {
+const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange, isMobileView = false }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const pageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const rootRef = useRef<HTMLDivElement>(null);
