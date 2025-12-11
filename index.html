@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Birthday Number Scroller - Interactive Countdown</title>
+    <meta name="description" content="An interactive scrolling birthday countdown with animated SVG paths" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: none;
+        touch-action: pan-y;
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+      /* Optimize scroll performance */
+      @media (hover: none) and (pointer: coarse) {
+        * {
+          scroll-behavior: smooth !important;
+          -webkit-overflow-scrolling: touch !important;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CRyGI6Hg.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DfOUHhec.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
