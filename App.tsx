@@ -1,17 +1,41 @@
 import { useState } from 'react';
 import NumberScroller from './NumberScroller';
+import BirthdayTimeBomb from './BirthdayTimeBomb';
+import BirthdayCake from './BirthdayCake';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState<'timebomb' | 'scroller' | 'cake'>('timebomb');
   const [activeNumber, setActiveNumber] = useState(1);
   const [isMobileView, setIsMobileView] = useState(false);
 
   const handleNumberChange = (num: number) => {
     setActiveNumber(num);
+    
+    // When user reaches number 38, show the cake page
+    if (num === 38) {
+      setTimeout(() => {
+        setCurrentPage('cake');
+      }, 1000);
+    }
   };
 
   const toggleView = () => {
     setIsMobileView(!isMobileView);
   };
+
+  const handleTimeBombComplete = () => {
+    setCurrentPage('scroller');
+  };
+
+  // Show time bomb first
+  if (currentPage === 'timebomb') {
+    return <BirthdayTimeBomb onComplete={handleTimeBombComplete} />;
+  }
+
+  // Show birthday cake after scrolling completes
+  if (currentPage === 'cake') {
+    return <BirthdayCake />;
+  }
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-slate-900">
@@ -52,7 +76,7 @@ function App() {
             <div className="bg-cyan-500 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold text-lg sm:text-xl min-w-[50px] sm:min-w-[60px] text-center">
               {activeNumber}
             </div>
-            <span className="text-xs sm:text-sm text-slate-400">/ 22</span>
+            <span className="text-xs sm:text-sm text-slate-400">/ 38</span>
           </div>
         </div>
       </div>
@@ -61,7 +85,7 @@ function App() {
       <div className="fixed top-[60px] sm:top-[73px] left-0 right-0 z-50 h-1 bg-slate-700">
         <div 
           className="h-full bg-gradient-to-r from-cyan-500 to-cyan-400 transition-all duration-300"
-          style={{ width: `${(activeNumber / 22) * 100}%` }}
+          style={{ width: `${(activeNumber / 38) * 100}%` }}
         />
       </div>
 
@@ -78,7 +102,7 @@ function App() {
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-slate-800/80 backdrop-blur-sm border-t border-slate-700">
         <div className="max-w-7xl mx-auto px-6 py-3 text-center">
           <p className="text-sm text-slate-400">
-            🎉 Scroll down to count from 1 to 22 • Follow the glowing path! 🎉
+            🎉 Scroll down to count from 1 to 38 • Follow the glowing path! 🎉
           </p>
         </div>
       </div>
