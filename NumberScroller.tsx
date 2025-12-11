@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, FC } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const NUMBERS = Array.from({ length: 22 }, (_, i) => i + 1);
 const TOTAL_NUMBERS = 22;
@@ -31,113 +31,113 @@ const IMAGE_PLACEHOLDERS: Record<number, string> = {
 
 // Add text notes for each number - Birthday Journey from Year 1 to Year 22
 const NUMBER_NOTES: Record<number, { title: string; description: string; quote: string }> = {
-  1: {
-    title: 'Year One - The First Birthday',
+  1: { 
+    title: 'Year One - The First Birthday', 
     description: 'Your very first birthday! The beginning of an incredible journey filled with wonder and discovery. From those first steps to the first words, this year marked the foundation of a lifetime of amazing memories. Every giggle, every milestone, celebrated with love.',
     quote: '"The day you were born, the world became a brighter place."'
   },
-  2: {
-    title: 'Year Two - Terrible Twos & Terrific Times',
+  2: { 
+    title: 'Year Two - Terrible Twos & Terrific Times', 
     description: 'Two years of joy! Learning to run, exploring everything with curious hands, and speaking in full sentences. This year brought personality, independence, and endless energy. From building blocks to making friends, every day was an adventure in growing up.',
     quote: '"Two years of love, laughter, and little footsteps."'
   },
-  3: {
-    title: 'Year Three - Preschool Adventures',
+  3: { 
+    title: 'Year Three - Preschool Adventures', 
     description: 'Three years of wonderful memories! Starting preschool, making new friends, and discovering imagination through play. This year brought creativity, storytelling, and the magic of learning. From art projects to playground fun, childhood blossomed beautifully.',
     quote: '"Three years of magic, three years of growth."'
   },
-  4: {
-    title: 'Year Four - Growing Strong',
+  4: { 
+    title: 'Year Four - Growing Strong', 
     description: 'Four incredible years! Mastering new skills, asking endless questions, and developing a unique personality. This year celebrated curiosity, confidence, and creativity. From riding bikes to reading books, independence grew stronger each day.',
     quote: '"Four years of sunshine, smiles, and dreams."'
   },
-  5: {
-    title: 'Year Five - Starting School',
+  5: { 
+    title: 'Year Five - Starting School', 
     description: 'Five amazing years! Beginning elementary school, learning to read and write, making lifelong friends. This milestone year marked the transition from toddler to big kid. From lunch boxes to homework, a new chapter of learning began.',
     quote: '"Five years of love, learning, and laughter."'
   },
-  6: {
-    title: 'Year Six - Elementary Excellence',
+  6: { 
+    title: 'Year Six - Elementary Excellence', 
     description: 'Six years of growth! Developing reading skills, discovering favorite subjects, and building friendships. This year brought academic achievements, extracurricular activities, and growing independence. From science projects to sports teams, talents emerged.',
     quote: '"Six years of discovery and determination."'
   },
-  7: {
-    title: 'Year Seven - Lucky Number',
+  7: { 
+    title: 'Year Seven - Lucky Number', 
     description: 'Seven wonderful years! Reading chapter books, solving math problems, and exploring hobbies. This lucky year celebrated intellectual growth, social development, and personal interests. From art classes to music lessons, passions began to shine.',
     quote: '"Seven years of fortune, fun, and friendship."'
   },
-  8: {
-    title: 'Year Eight - Infinite Possibilities',
+  8: { 
+    title: 'Year Eight - Infinite Possibilities', 
     description: 'Eight years of achievements! Mastering multiplication, writing stories, and developing critical thinking. This year marked increased responsibility, deeper friendships, and emerging talents. From school projects to family adventures, confidence soared.',
     quote: '"Eight years of endless potential and promise."'
   },
-  9: {
-    title: 'Year Nine - Almost Double Digits',
+  9: { 
+    title: 'Year Nine - Almost Double Digits', 
     description: 'Nine amazing years! Preparing for the teen years ahead, developing stronger opinions, and building character. This year celebrated maturity, independence, and self-discovery. From complex projects to meaningful conversations, wisdom grew.',
     quote: '"Nine years of growth, nine years of grace."'
   },
-  10: {
-    title: 'Year Ten - A Full Decade!',
+  10: { 
+    title: 'Year Ten - A Full Decade!', 
     description: 'Ten incredible years! Reaching double digits, celebrating a full decade of memories. This milestone marked the transition from childhood to pre-teen years. From birthday parties to family traditions, ten years of love and laughter celebrated.',
     quote: '"A decade of joy, a lifetime of memories ahead."'
   },
-  11: {
-    title: 'Year Eleven - Pre-Teen Years',
+  11: { 
+    title: 'Year Eleven - Pre-Teen Years', 
     description: 'Eleven years of wonderful moments! Entering middle school, navigating new challenges, and discovering identity. This year brought physical changes, emotional growth, and social awareness. From new subjects to changing interests, transformation began.',
     quote: '"Eleven years strong, ready for anything."'
   },
-  12: {
-    title: 'Year Twelve - Tween Milestones',
+  12: { 
+    title: 'Year Twelve - Tween Milestones', 
     description: 'Twelve years of beautiful memories! Developing independence, forming deeper friendships, and exploring passions. This year celebrated academic achievements, personal growth, and emerging maturity. From school dances to team sports, confidence blossomed.',
     quote: '"Twelve years of becoming who you\'re meant to be."'
   },
-  13: {
-    title: 'Year Thirteen - Officially A Teenager!',
+  13: { 
+    title: 'Year Thirteen - Officially A Teenager!', 
     description: 'Thirteen years and officially a teen! This monumental birthday marked the beginning of teenage years filled with new experiences, responsibilities, and freedoms. From studying harder to socializing more, this year opened doors to a new chapter of life.',
     quote: '"Thirteen years young, a lifetime of adventure ahead."'
   },
-  14: {
-    title: 'Year Fourteen - Teen Spirit Rising',
+  14: { 
+    title: 'Year Fourteen - Teen Spirit Rising', 
     description: 'Fourteen years of life lessons! Navigating high school challenges, developing personal values, and building lasting friendships. This year brought academic pressures, social dynamics, and self-discovery. From exams to extracurriculars, resilience grew stronger.',
     quote: '"Fourteen years of finding your voice and vision."'
   },
-  15: {
-    title: 'Year Fifteen - Quinceañera Dreams',
+  15: { 
+    title: 'Year Fifteen - Quinceañera Dreams', 
     description: 'Fifteen years of cherished moments! A milestone birthday celebrating the transition from childhood to young adulthood. This special year brought driver\'s permits, deeper relationships, and clearer goals. From formal celebrations to casual hangouts, maturity shined.',
     quote: '"Fifteen years of grace, fifteen years of growth."'
   },
-  16: {
-    title: 'Year Sixteen - Sweet Sixteen!',
+  16: { 
+    title: 'Year Sixteen - Sweet Sixteen!', 
     description: 'Sixteen incredible years! The golden birthday everyone dreams about. Getting a driver\'s license, gaining more independence, and making important life decisions. This year celebrated freedom, responsibility, and the excitement of near-adulthood. From road trips to college prep, the future beckoned.',
     quote: '"Sweet sixteen and never been more alive!"'
   },
-  17: {
-    title: 'Year Seventeen - Senior Year Approaching',
+  17: { 
+    title: 'Year Seventeen - Senior Year Approaching', 
     description: 'Seventeen years of amazing memories! Preparing for graduation, applying to colleges, and planning for the future. This year brought bittersweet moments, lasting friendships, and important choices. From prom to final exams, childhood\'s end approached.',
     quote: '"Seventeen years of building the foundation for tomorrow."'
   },
-  18: {
-    title: 'Year Eighteen - Legal Adulthood!',
+  18: { 
+    title: 'Year Eighteen - Legal Adulthood!', 
     description: 'Eighteen years and officially an adult! Graduating high school, voting in elections, and making independent decisions. This monumental birthday marked true independence, new responsibilities, and exciting opportunities. From college acceptance to career planning, adulthood began.',
     quote: '"Eighteen years of growth, a lifetime of possibilities."'
   },
-  19: {
-    title: 'Year Nineteen - College Life',
+  19: { 
+    title: 'Year Nineteen - College Life', 
     description: 'Nineteen years of life experiences! Navigating college, living independently, and discovering career passions. This year brought academic challenges, personal growth, and lifelong friendships. From dorm rooms to internships, the real world beckoned.',
     quote: '"Nineteen years of learning who you truly are."'
   },
-  20: {
-    title: 'Year Twenty - Two Decades Strong!',
+  20: { 
+    title: 'Year Twenty - Two Decades Strong!', 
     description: 'Twenty incredible years! Completing two full decades of life, love, and learning. This milestone birthday celebrated achievements, growth, and the journey ahead. From childhood memories to adult aspirations, twenty years of beautiful moments honored.',
     quote: '"Twenty years of life, twenty years of love."'
   },
-  21: {
-    title: 'Year Twenty-One - Full Independence',
+  21: { 
+    title: 'Year Twenty-One - Full Independence', 
     description: 'Twenty-one years and fully independent! The final coming-of-age milestone bringing complete legal adulthood. This year celebrated freedom, responsibility, and the power to make all life decisions. From career launches to life adventures, everything became possible.',
     quote: '"Twenty-one years young, the world is yours."'
   },
-  22: {
-    title: 'Year Twenty-Two - Finding Your Path',
+  22: { 
+    title: 'Year Twenty-Two - Finding Your Path', 
     description: 'Twenty-two years of incredible journey! Establishing career paths, building meaningful relationships, and defining personal values. This year marked the transition from student to professional, from dependent to independent. From first jobs to new homes, adult life flourished beautifully.',
     quote: '"Twenty-two years of becoming your best self."'
   },
@@ -149,7 +149,7 @@ interface NumberScrollerProps {
   isMobileView?: boolean;
 }
 
-const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange, isMobileView = false }) => {
+export const NumberScroller: React.FC<NumberScrollerProps> = ({ activeNumber, onNumberChange, isMobileView = false }) => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const pageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const rootRef = useRef<HTMLDivElement>(null);
@@ -172,32 +172,32 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
 
   useEffect(() => {
     if (!rootRef.current) return;
-
+    
     const pageHeight = window.innerHeight;
     const containerWidth = window.innerWidth;
     const paddingX = isMobileView ? 60 : 120;
-
+    
     let d = '';
     const startX = paddingX;
     const startY = pageHeight / 2;
     d += 'M ' + startX + ' ' + startY;
 
     for (let i = 1; i < NUMBERS.length; i++) {
-      const currentY = (i * pageHeight) + (pageHeight / 2);
-      const prevY = ((i - 1) * pageHeight) + (pageHeight / 2);
+        const currentY = (i * pageHeight) + (pageHeight / 2);
+        const prevY = ((i - 1) * pageHeight) + (pageHeight / 2);
 
-      const controlPointY1 = prevY + pageHeight / 2.5;
-      const controlPointY2 = currentY - pageHeight / 2.5;
-
-      if ((i + 1) % 2 === 0) {
-        const startXPos = paddingX;
-        const endX = containerWidth - paddingX;
-        d += ' C ' + (startXPos + containerWidth / 4) + ', ' + controlPointY1 + ', ' + (endX - containerWidth / 4) + ', ' + controlPointY2 + ', ' + endX + ' ' + currentY;
-      } else {
-        const startXPos = containerWidth - paddingX;
-        const endX = paddingX;
-        d += ' C ' + (startXPos - containerWidth / 4) + ', ' + controlPointY1 + ', ' + (endX + containerWidth / 4) + ', ' + controlPointY2 + ', ' + endX + ' ' + currentY;
-      }
+        const controlPointY1 = prevY + pageHeight / 2.5;
+        const controlPointY2 = currentY - pageHeight / 2.5;
+        
+        if ((i + 1) % 2 === 0) {
+            const startXPos = paddingX;
+            const endX = containerWidth - paddingX;
+            d += ' C ' + (startXPos + containerWidth / 4) + ', ' + controlPointY1 + ', ' + (endX - containerWidth / 4) + ', ' + controlPointY2 + ', ' + endX + ' ' + currentY;
+        } else {
+            const startXPos = containerWidth - paddingX;
+            const endX = paddingX;
+            d += ' C ' + (startXPos - containerWidth / 4) + ', ' + controlPointY1 + ', ' + (endX + containerWidth / 4) + ', ' + controlPointY2 + ', ' + endX + ' ' + currentY;
+        }
     }
     setPathData(d);
   }, [isMobileView]);
@@ -214,35 +214,35 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
     if (pathRef.current && pathLength > 0) {
       const progress = (activeNumber - 1) / (TOTAL_NUMBERS - 1);
       const distance = pathLength * progress;
-
+      
       try {
         // Calculate stopping distance based on screen size
         // Car stops well before the image to avoid overlap
         const stopDistance = isMobileView ? 200 : 300;
         const carDistance = Math.max(0, distance - stopDistance);
-
+        
         const point = pathRef.current.getPointAtLength(carDistance);
         const nextPoint = pathRef.current.getPointAtLength(Math.min(carDistance + 20, pathLength));
-
+        
         // Calculate rotation angle based on path direction
         let angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
-
+        
         // Determine if car should be flipped (going left)
         const isGoingLeft = angle > 90 || angle < -90;
-
+        
         // Adjust angle for left-side movement: fine-tune to match backside on line
         if (isGoingLeft) {
           angle = angle + 180;  // Rotate 180° to reverse direction, backside on line
         }
-
+        
         setCarFlipped(isGoingLeft);
-
+        
         setCarPosition({
           x: point.x,
           y: point.y,
           rotation: angle
         });
-
+        
         // Set visible path length to car position (line ends at car)
         setVisiblePathLength(carDistance);
       } catch (error) {
@@ -289,15 +289,9 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
   }, [onNumberChange]);
 
   return (
-    <div
+    <div 
       ref={rootRef}
-      className="relative h-screen w-screen overflow-y-auto snap-y snap-proximity [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-hidden bg-black"
-      style={{ 
-        scrollBehavior: 'smooth', 
-        WebkitOverflowScrolling: 'touch',
-        scrollSnapType: 'y proximity',
-        overscrollBehavior: 'contain'
-      }}
+      className="relative h-screen w-screen overflow-y-auto snap-y snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-x-hidden bg-black"
     >
       {/* Optimized Starry Night Sky - Reduced elements for performance */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -317,7 +311,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           />
         ))}
-
+        
         {/* Medium stars - reduced from 80 to 40 */}
         {Array.from({ length: 40 }).map((_, i) => (
           <div
@@ -335,7 +329,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           />
         ))}
-
+        
         {/* Large bright stars - reduced from 40 to 20 */}
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -353,7 +347,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           />
         ))}
-
+        
         {/* Shooting stars - reduced from 5 to 3 */}
         {Array.from({ length: 3 }).map((_, i) => (
           <div
@@ -369,9 +363,9 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           />
         ))}
-
+        
         {/* Subtle nebula glows - simplified */}
-        <div
+        <div 
           className="absolute w-72 h-72 rounded-full opacity-10"
           style={{
             top: '15%',
@@ -382,7 +376,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
           }}
         />
       </div>
-
+      
       <style>{`
         @keyframes twinkle {
           0%, 100% { opacity: 0.3; }
@@ -405,8 +399,8 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
           50% { opacity: 0.15; }
         }
       `}</style>
-
-      <div
+      
+      <div 
         ref={contentRef}
         className="relative w-full transition-transform duration-700 ease-out"
         style={{ willChange: 'transform' }}
@@ -444,12 +438,12 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
             }}
           >
             {/* Car positioned in front of line - bidirectional design */}
-            <g transform={'translate(-60, -35) scale(' + (isMobileView ? '2.8' : '2.5') + ')'}>
+            <g transform={'translate(-60, -35) scale(' + (isMobileView ? '1.8' : '2.5') + ')'}>
               {/* Enhanced shadow with blur */}
               <ellipse cx="30" cy="35" rx="28" ry="6" fill="rgba(0,0,0,0.4)" filter="url(#shadowBlur)" />
-
+              
               {/* MAIN CAR BODY - Bidirectional Sports Car Side Profile */}
-
+              
               {/* Lower body base */}
               <path
                 d="M 10 26 L 8 28 L 8 30 L 52 30 L 52 28 L 50 26 Z"
@@ -457,7 +451,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#0f172a"
                 strokeWidth="1.5"
               />
-
+              
               {/* Main body curve - aerodynamic design */}
               <path
                 d="M 10 26 L 15 18 L 20 15 L 25 14 L 35 14 L 42 16 L 48 20 L 50 26 Z"
@@ -466,7 +460,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 strokeWidth="2"
                 filter="url(#carShadow)"
               />
-
+              
               {/* Front Hood section (RIGHT SIDE) - Always front when going right */}
               <path
                 d="M 42 16 L 48 20 L 50 26 L 52 26 L 54 22 L 53 18 L 50 16 Z"
@@ -474,7 +468,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#1e293b"
                 strokeWidth="1.5"
               />
-
+              
               {/* Rear Hood section (LEFT SIDE) - Always front when going left */}
               <path
                 d="M 10 26 L 8 26 L 6 22 L 7 18 L 10 16 L 15 18 Z"
@@ -482,7 +476,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#1e293b"
                 strokeWidth="1.5"
               />
-
+              
               {/* Roof/Cabin - centered */}
               <path
                 d="M 20 15 L 25 12 L 35 12 L 38 14 L 38 20 L 20 20 Z"
@@ -490,7 +484,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#1e40af"
                 strokeWidth="1.5"
               />
-
+              
               {/* Front windshield */}
               <path
                 d="M 35 12 L 38 14 L 38 20 L 35 20 Z"
@@ -498,7 +492,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#3b82f6"
                 strokeWidth="1"
               />
-
+              
               {/* Rear windshield */}
               <path
                 d="M 20 15 L 20 20 L 23 20 L 25 12 Z"
@@ -506,7 +500,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#3b82f6"
                 strokeWidth="1"
               />
-
+              
               {/* Side windows */}
               <path
                 d="M 26 12 L 33 12 L 33 19 L 26 19 Z"
@@ -514,13 +508,13 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 stroke="#60a5fa"
                 strokeWidth="1"
               />
-
+              
               {/* Side door lines */}
               <line x1="20" y1="20" x2="38" y2="20" stroke="#475569" strokeWidth="1" />
               <line x1="22" y1="23" x2="36" y2="23" stroke="#475569" strokeWidth="0.8" />
-
+              
               {/* WHEELS - Centered */}
-
+              
               {/* Front RIGHT wheel */}
               <g>
                 <circle cx="43" cy="30" r="7" fill="#0f172a" stroke="#334155" strokeWidth="2.5" />
@@ -533,7 +527,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 <circle cx="43" cy="30" r="2" fill="#94a3b8" />
                 <circle cx="43" cy="30" r="1" fill="#cbd5e1" />
               </g>
-
+              
               {/* Rear LEFT wheel */}
               <g>
                 <circle cx="17" cy="30" r="7" fill="#0f172a" stroke="#334155" strokeWidth="2.5" />
@@ -546,7 +540,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 <circle cx="17" cy="30" r="2" fill="#94a3b8" />
                 <circle cx="17" cy="30" r="1" fill="#cbd5e1" />
               </g>
-
+              
               {/* FRONT LIGHTS - RIGHT SIDE (when going right) */}
               {!carFlipped && (
                 <>
@@ -557,13 +551,13 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                     <animate attributeName="opacity" values="0.9;1;0.9" dur="0.8s" repeatCount="indefinite" />
                   </ellipse>
                   <path d="M 54 20 L 65 18 L 65 22 Z" fill="rgba(251, 191, 36, 0.3)" opacity="0.7" />
-
+                  
                   {/* Rear lights - LEFT SIDE */}
                   <circle cx="9" cy="20" r="2.5" fill="#ef4444" opacity="0.85" />
                   <circle cx="9" cy="25" r="2" fill="#dc2626" opacity="0.8" />
                 </>
               )}
-
+              
               {/* FRONT LIGHTS - LEFT SIDE (when going left) */}
               {carFlipped && (
                 <>
@@ -574,37 +568,37 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                     <animate attributeName="opacity" values="0.9;1;0.9" dur="0.8s" repeatCount="indefinite" />
                   </ellipse>
                   <path d="M 6 20 L -5 18 L -5 22 Z" fill="rgba(251, 191, 36, 0.3)" opacity="0.7" />
-
+                  
                   {/* Rear lights - RIGHT SIDE */}
                   <circle cx="51" cy="20" r="2.5" fill="#ef4444" opacity="0.85" />
                   <circle cx="51" cy="25" r="2" fill="#dc2626" opacity="0.8" />
                 </>
               )}
-
+              
               {/* Side mirrors */}
               <rect x="38" y="16" width="2" height="3" rx="1" fill="#475569" />
               <rect x="40" y="16.5" width="3" height="2" rx="0.5" fill="#64748b" />
               <rect x="17" y="16" width="2" height="3" rx="1" fill="#475569" />
               <rect x="14" y="16.5" width="3" height="2" rx="0.5" fill="#64748b" />
-
+              
               {/* Spoilers on both ends */}
               <rect x="8" y="12" width="3" height="2" rx="0.5" fill="#1e293b" />
               <rect x="7" y="10" width="5" height="2" rx="1" fill="#2563eb" stroke="#1e40af" strokeWidth="0.5" />
               <rect x="49" y="12" width="3" height="2" rx="0.5" fill="#1e293b" />
               <rect x="48" y="10" width="5" height="2" rx="1" fill="#2563eb" stroke="#1e40af" strokeWidth="0.5" />
-
+              
               {/* Bumpers on both ends */}
               <path d="M 50 26 L 52 26 L 54 27 L 54 29 L 52 30 L 50 30 Z" fill="#334155" stroke="#1e293b" strokeWidth="1" />
               <path d="M 10 26 L 8 26 L 6 27 L 6 29 L 8 30 L 10 30 Z" fill="#334155" stroke="#1e293b" strokeWidth="1" />
-
+              
               {/* Air intake grilles */}
               <rect x="48" y="27" width="3" height="2" fill="#0f172a" stroke="#475569" strokeWidth="0.5" />
               <rect x="9" y="27" width="3" height="2" fill="#0f172a" stroke="#475569" strokeWidth="0.5" />
-
+              
               {/* Exhaust pipes on both ends */}
               <ellipse cx="10" cy="29" rx="2" ry="1.5" fill="#374151" stroke="#1f2937" strokeWidth="1" />
               <ellipse cx="50" cy="29" rx="2" ry="1.5" fill="#374151" stroke="#1f2937" strokeWidth="1" />
-
+              
               {/* Dynamic speed lines - positioned based on direction */}
               <g opacity="0.8">
                 {!carFlipped ? (
@@ -634,7 +628,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 )}
               </g>
             </g>
-
+            
             {/* Premium glowing aura - layered effect */}
             <circle cx="0" cy="0" r="80" fill="rgba(34, 211, 238, 0.12)">
               <animate attributeName="r" values="80;90;80" dur="2s" repeatCount="indefinite" />
@@ -648,7 +642,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
               <animate attributeName="r" values="40;50;40" dur="2s" repeatCount="indefinite" />
             </circle>
           </g>
-
+          
           <defs>
             {/* Gradient definitions */}
             <linearGradient id="carBodyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -656,32 +650,32 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
               <stop offset="50%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
             </linearGradient>
-
+            
             <linearGradient id="carTopGradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
               <stop offset="50%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: '#1e40af', stopOpacity: 1 }} />
             </linearGradient>
-
+            
             <linearGradient id="hoodGradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" style={{ stopColor: '#2563eb', stopOpacity: 1 }} />
               <stop offset="100%" style={{ stopColor: '#1d4ed8', stopOpacity: 1 }} />
             </linearGradient>
-
+            
             {/* Filter effects */}
             <filter id="carShadow">
-              <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#000" floodOpacity="0.6" />
+              <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#000" floodOpacity="0.6"/>
             </filter>
-
+            
             <filter id="shadowBlur">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
             </filter>
-
+            
             <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
               <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
           </defs>
@@ -692,7 +686,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
           const isOdd = number % 2 === 1;
           const imageUrl = IMAGE_PLACEHOLDERS[number] || 'https://via.placeholder.com/150';
           const noteData = NUMBER_NOTES[number] || { title: 'Special Year', description: 'Amazing memories', quote: '"Unforgettable moments"' };
-
+          
           return (
             <div
               key={number}
@@ -701,28 +695,21 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 else pageRefs.current.delete(number);
               }}
               data-number={number}
-              className={'h-screen w-full snap-center flex items-center ' + (isMobileView ? 'px-6 py-8' : 'px-20') + ' relative z-10 ' + (isOdd ? 'justify-start' : 'justify-end')}
-              style={{ 
-                minHeight: isMobileView ? '100vh' : 'auto', 
-                touchAction: 'pan-y',
-                scrollSnapAlign: 'center',
-                scrollSnapStop: 'normal'
-              }}
+              className={'h-screen w-full snap-center flex items-center ' + (isMobileView ? 'px-8' : 'px-20') + ' relative z-10 ' + (isOdd ? 'justify-start' : 'justify-end')}
             >
-              <div className={'flex items-center ' + (isMobileView ? 'gap-6 flex-col py-4' : 'gap-8') + ' ' + (isOdd ? (isMobileView ? '' : 'flex-row') : (isMobileView ? '' : 'flex-row-reverse'))}>
-
+              <div className={'flex items-center ' + (isMobileView ? 'gap-4 flex-col' : 'gap-8') + ' ' + (isOdd ? (isMobileView ? '' : 'flex-row') : (isMobileView ? '' : 'flex-row-reverse'))}>
+                
                 {/* Image placeholder */}
-                <div
+                <div 
                   className={'rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 relative ' + (isActive ? 'scale-110' : 'scale-100')}
                   style={{
-                    width: isMobileView ? '200px' : '220px',
-                    height: isMobileView ? '200px' : '220px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    boxShadow: isActive ? '0 25px 50px -12px rgba(34, 211, 238, 0.5), 0 0 30px rgba(34, 211, 238, 0.3)' : '0 20px 40px -10px rgba(0, 0, 0, 0.4)'
+                    width: isMobileView ? '120px' : '180px',
+                    height: isMobileView ? '120px' : '180px',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
                   }}
                 >
-                  <img
-                    src={imageUrl}
+                  <img 
+                    src={imageUrl} 
                     alt={'Image ' + number}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -732,12 +719,12 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 </div>
 
                 {/* Number with bounce and glow */}
-                <div className={'text-center relative ' + (isMobileView ? 'order-first mb-4' : '')}>
-                  <h2
-                    className={'font-bold transition-all duration-300 ' + (isMobileView ? 'text-8xl' : 'text-9xl')}
+                <div className={'text-center relative ' + (isMobileView ? 'order-first' : '')}>
+                  <h2 
+                    className={'font-bold transition-all duration-300 ' + (isMobileView ? 'text-7xl' : 'text-9xl')}
                     style={{
                       color: isActive ? '#22d3ee' : '#64748b',
-                      textShadow: isActive
+                      textShadow: isActive 
                         ? '0 0 20px rgba(34, 211, 238, 0.8), 0 0 40px rgba(34, 211, 238, 0.6), 0 0 60px rgba(34, 211, 238, 0.4)'
                         : 'none',
                       animation: isActive ? 'bounce 1s ease-in-out infinite' : 'none',
@@ -746,10 +733,10 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                   >
                     {number}
                   </h2>
-
+                  
                   {/* Glowing ring effect */}
                   {isActive && (
-                    <div
+                    <div 
                       className="absolute inset-0 rounded-full"
                       style={{
                         background: 'radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%)',
@@ -762,14 +749,14 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                 </div>
 
                 {/* Enhanced Text Note Box - Large Aesthetic Design */}
-                <div
-                  className={'transition-all duration-500 rounded-2xl backdrop-blur-md border ' + (isMobileView ? 'w-full max-w-md p-6' : 'w-96 p-6') + ' ' + (isActive ? 'scale-105 shadow-2xl' : 'scale-100 shadow-xl')}
+                <div 
+                  className={'transition-all duration-500 rounded-2xl backdrop-blur-md border ' + (isMobileView ? 'w-full max-w-sm p-5' : 'w-96 p-6') + ' ' + (isActive ? 'scale-105 shadow-2xl' : 'scale-100 shadow-xl')}
                   style={{
-                    background: isActive
+                    background: isActive 
                       ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(147, 51, 234, 0.2) 100%)'
                       : 'linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(51, 65, 85, 0.3) 100%)',
                     borderColor: isActive ? '#22d3ee' : 'rgba(148, 163, 184, 0.3)',
-                    boxShadow: isActive
+                    boxShadow: isActive 
                       ? '0 20px 60px rgba(34, 211, 238, 0.4), 0 0 40px rgba(59, 130, 246, 0.3)'
                       : '0 10px 40px rgba(0, 0, 0, 0.2)'
                   }}
@@ -778,31 +765,31 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                   <div className="flex items-center gap-4 mb-4 pb-4 border-b" style={{
                     borderColor: isActive ? 'rgba(34, 211, 238, 0.3)' : 'rgba(148, 163, 184, 0.2)'
                   }}>
-                    <div
+                    <div 
                       className={'rounded-xl flex items-center justify-center transition-all duration-300 ' + (isMobileView ? 'w-12 h-12' : 'w-14 h-14')}
                       style={{
-                        background: isActive
+                        background: isActive 
                           ? 'linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #9333ea 100%)'
                           : 'linear-gradient(135deg, #64748b 0%, #475569 100%)',
                         boxShadow: isActive ? '0 8px 24px rgba(34, 211, 238, 0.5)' : 'none'
                       }}
                     >
-                      <svg
-                        width={isMobileView ? "24" : "28"}
-                        height={isMobileView ? "24" : "28"}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
+                      <svg 
+                        width={isMobileView ? "24" : "28"} 
+                        height={isMobileView ? "24" : "28"} 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="white" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
                         strokeLinejoin="round"
                       >
-                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                        <line x1="7" y1="7" x2="7.01" y2="7" />
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                        <line x1="7" y1="7" x2="7.01" y2="7"/>
                       </svg>
                     </div>
-
-                    <h3
+                    
+                    <h3 
                       className={'font-bold transition-colors duration-300 ' + (isMobileView ? 'text-xl' : 'text-2xl')}
                       style={{
                         color: isActive ? '#22d3ee' : '#e2e8f0',
@@ -812,10 +799,10 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                       {noteData.title}
                     </h3>
                   </div>
-
+                  
                   {/* Main description text */}
                   <div className="space-y-4">
-                    <p
+                    <p 
                       className={'leading-relaxed transition-colors duration-300 ' + (isMobileView ? 'text-sm' : 'text-base')}
                       style={{
                         color: isActive ? '#cbd5e1' : '#94a3b8',
@@ -824,29 +811,29 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                     >
                       {noteData.description}
                     </p>
-
+                    
                     {/* Decorative quote section */}
-                    <div
+                    <div 
                       className={'relative rounded-lg p-4 mt-4 ' + (isMobileView ? 'text-xs' : 'text-sm')}
                       style={{
-                        background: isActive
+                        background: isActive 
                           ? 'linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)'
                           : 'rgba(15, 23, 42, 0.4)',
                         borderLeft: '4px solid ' + (isActive ? '#22d3ee' : '#64748b')
                       }}
                     >
                       {/* Quote icon */}
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
+                      <svg 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
                         fill={isActive ? '#22d3ee' : '#64748b'}
                         className="absolute -top-2 -left-2 opacity-50"
                       >
-                        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
+                        <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
                       </svg>
-
-                      <p
+                      
+                      <p 
                         className="italic font-medium pl-4"
                         style={{
                           color: isActive ? '#a5f3fc' : '#cbd5e1'
@@ -855,19 +842,19 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
                         {noteData.quote}
                       </p>
                     </div>
-
+                    
                     {/* Decorative bottom accent */}
                     <div className="flex items-center gap-2 pt-3">
-                      <div
+                      <div 
                         className="h-1 flex-1 rounded-full transition-all duration-500"
                         style={{
-                          background: isActive
+                          background: isActive 
                             ? 'linear-gradient(90deg, #22d3ee 0%, #3b82f6 50%, #9333ea 100%)'
                             : 'linear-gradient(90deg, #64748b 0%, #475569 100%)',
                           boxShadow: isActive ? '0 0 10px rgba(34, 211, 238, 0.5)' : 'none'
                         }}
                       />
-                      <div
+                      <div 
                         className={'rounded-full transition-all duration-500 ' + (isMobileView ? 'w-2 h-2' : 'w-3 h-3')}
                         style={{
                           background: isActive ? '#22d3ee' : '#64748b',
@@ -883,7 +870,7 @@ const NumberScroller: FC<NumberScrollerProps> = ({ activeNumber, onNumberChange,
           );
         })}
       </div>
-
+      
       {/* CSS Animations */}
       <style>{`
         @keyframes bounce {
