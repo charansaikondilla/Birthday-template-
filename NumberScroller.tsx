@@ -1,33 +1,28 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-const NUMBERS = Array.from({ length: 22 }, (_, i) => i + 1);
-const TOTAL_NUMBERS = 22;
+const NUMBERS = Array.from({ length: 38 }, (_, i) => i + 1);
+const TOTAL_NUMBERS = 38;
 
-// Real birthday images - rotating through available photos
-const IMAGE_PLACEHOLDERS: Record<number, string> = {
-  1: 'https://i.ibb.co/PsyvxQsV/mom-1.webp',
-  2: 'https://i.ibb.co/Y4jrvb7z/mom-2.webp',
-  3: 'https://i.ibb.co/1GxTsmnb/mom-3.webp',
-  4: 'https://i.ibb.co/YSGKFVX/mom-4.webp',
-  5: 'https://i.ibb.co/3yJcF0FJ/mom-5.webp',
-  6: 'https://i.ibb.co/nsXKh4bm/mom-6.webp',
-  7: 'https://i.ibb.co/ymyvPQ9N/mom-7.webp',
-  8: 'https://i.ibb.co/rff6xdsJ/mom-8.webp',
-  9: 'https://i.ibb.co/chbjQzzX/mom-12.webp',
-  10: 'https://i.ibb.co/S7mqwfYg/mom-13.webp',
-  11: 'https://i.ibb.co/qYHxV00Y/mom-14.webp',
-  12: 'https://i.ibb.co/PsyvxQsV/mom-1.webp',
-  13: 'https://i.ibb.co/Y4jrvb7z/mom-2.webp',
-  14: 'https://i.ibb.co/1GxTsmnb/mom-3.webp',
-  15: 'https://i.ibb.co/YSGKFVX/mom-4.webp',
-  16: 'https://i.ibb.co/3yJcF0FJ/mom-5.webp',
-  17: 'https://i.ibb.co/nsXKh4bm/mom-6.webp',
-  18: 'https://i.ibb.co/ymyvPQ9N/mom-7.webp',
-  19: 'https://i.ibb.co/rff6xdsJ/mom-8.webp',
-  20: 'https://i.ibb.co/chbjQzzX/mom-12.webp',
-  21: 'https://i.ibb.co/S7mqwfYg/mom-13.webp',
-  22: 'https://i.ibb.co/qYHxV00Y/mom-14.webp',
-};
+// Real birthday images - rotating through available photos (11 images repeated)
+const BASE_IMAGES = [
+  'https://i.ibb.co/PsyvxQsV/mom-1.webp',
+  'https://i.ibb.co/Y4jrvb7z/mom-2.webp',
+  'https://i.ibb.co/1GxTsmnb/mom-3.webp',
+  'https://i.ibb.co/YSGKFVX/mom-4.webp',
+  'https://i.ibb.co/3yJcF0FJ/mom-5.webp',
+  'https://i.ibb.co/nsXKh4bm/mom-6.webp',
+  'https://i.ibb.co/ymyvPQ9N/mom-7.webp',
+  'https://i.ibb.co/rff6xdsJ/mom-8.webp',
+  'https://i.ibb.co/chbjQzzX/mom-12.webp',
+  'https://i.ibb.co/S7mqwfYg/mom-13.webp',
+  'https://i.ibb.co/qYHxV00Y/mom-14.webp',
+];
+
+// Generate image placeholders for all 38 numbers by rotating through base images
+const IMAGE_PLACEHOLDERS: Record<number, string> = {};
+for (let i = 1; i <= 38; i++) {
+  IMAGE_PLACEHOLDERS[i] = BASE_IMAGES[(i - 1) % BASE_IMAGES.length];
+}
 
 // Add text notes for each number - Birthday Journey from Year 1 to Year 22
 const NUMBER_NOTES: Record<number, { title: string; description: string; quote: string }> = {
@@ -140,6 +135,86 @@ const NUMBER_NOTES: Record<number, { title: string; description: string; quote: 
     title: 'Year Twenty-Two - Finding Your Path', 
     description: 'Twenty-two years of incredible journey! Establishing career paths, building meaningful relationships, and defining personal values. This year marked the transition from student to professional, from dependent to independent. From first jobs to new homes, adult life flourished beautifully.',
     quote: '"Twenty-two years of becoming your best self."'
+  },
+  23: {
+    title: 'Year Twenty-Three - Career Building',
+    description: 'Twenty-three years of growth and achievement! Building professional expertise, developing workplace skills, and climbing the career ladder. This year brought new challenges, opportunities, and the satisfaction of meaningful work.',
+    quote: '"Twenty-three years of professional excellence."'
+  },
+  24: {
+    title: 'Year Twenty-Four - Personal Growth',
+    description: 'Twenty-four incredible years! Discovering personal strengths, overcoming obstacles, and developing resilience. This year celebrated self-improvement, emotional maturity, and the journey of becoming stronger every day.',
+    quote: '"Twenty-four years of wisdom and strength."'
+  },
+  25: {
+    title: 'Year Twenty-Five - Quarter Century!',
+    description: 'A quarter century of wonderful memories! This milestone marked 25 years of life, love, and learning. From childhood dreams to adult achievements, celebrating a complete 25-year journey of amazing experiences and beautiful moments.',
+    quote: '"Twenty-five years of cherished memories."'
+  },
+  26: {
+    title: 'Year Twenty-Six - Confidence Rising',
+    description: 'Twenty-six years of confidence and capability! Mastering professional skills, building strong relationships, and finding your voice. This year brought self-assurance, clear goals, and the power to create the life you want.',
+    quote: '"Twenty-six years of unstoppable confidence."'
+  },
+  27: {
+    title: 'Year Twenty-Seven - Life Balance',
+    description: 'Twenty-seven years of learning balance! Managing work and personal life, nurturing relationships, and prioritizing self-care. This year taught the importance of harmony, peace, and taking time for what truly matters.',
+    quote: '"Twenty-seven years of beautiful balance."'
+  },
+  28: {
+    title: 'Year Twenty-Eight - New Horizons',
+    description: 'Twenty-eight amazing years! Exploring new opportunities, taking calculated risks, and expanding horizons. This year opened doors to adventures, travel, and experiences that enriched life in unexpected ways.',
+    quote: '"Twenty-eight years of endless possibilities."'
+  },
+  29: {
+    title: 'Year Twenty-Nine - Wisdom Deepening',
+    description: 'Twenty-nine years of accumulated wisdom! Understanding life\'s complexities, appreciating simple joys, and making thoughtful decisions. This year brought clarity, perspective, and the peace that comes with experience.',
+    quote: '"Twenty-nine years of profound wisdom."'
+  },
+  30: {
+    title: 'Year Thirty - A New Decade!',
+    description: 'Three decades of beautiful life! Entering the thirties with confidence, experience, and excitement. This milestone celebrated 30 years of growth, achievement, and the promise of even greater things to come.',
+    quote: '"Thirty years fabulous and thriving!"'
+  },
+  31: {
+    title: 'Year Thirty-One - Thriving Era',
+    description: 'Thirty-one years of thriving! Established in career, confident in choices, and comfortable in your own skin. This year celebrated the comfort and power of knowing who you are and where you\'re going.',
+    quote: '"Thirty-one years of authentic living."'
+  },
+  32: {
+    title: 'Year Thirty-Two - Prime Time',
+    description: 'Thirty-two wonderful years! Living in your prime with energy, experience, and enthusiasm. This year balanced youthful spirit with mature wisdom, creating the perfect blend for success and happiness.',
+    quote: '"Thirty-two years of prime living."'
+  },
+  33: {
+    title: 'Year Thirty-Three - Mastery',
+    description: 'Thirty-three years of mastery! Excelling in your field, mentoring others, and making significant contributions. This year showcased expertise, leadership, and the satisfaction of being at the top of your game.',
+    quote: '"Thirty-three years of excellence achieved."'
+  },
+  34: {
+    title: 'Year Thirty-Four - Life Harmony',
+    description: 'Thirty-four years of harmonious living! Perfectly balancing career success, personal fulfillment, and meaningful relationships. This year celebrated the art of living well in all areas of life.',
+    quote: '"Thirty-four years of perfect harmony."'
+  },
+  35: {
+    title: 'Year Thirty-Five - Mid-Thirties Magic',
+    description: 'Thirty-five amazing years! The sweet spot of the thirties bringing confidence, capability, and contentment. This year marked the perfect balance of energy, experience, and enjoyment of life\'s pleasures.',
+    quote: '"Thirty-five years of magical living."'
+  },
+  36: {
+    title: 'Year Thirty-Six - Legacy Building',
+    description: 'Thirty-six years of purposeful living! Creating lasting impact, building meaningful legacies, and contributing to something greater. This year focused on making a difference that extends beyond yourself.',
+    quote: '"Thirty-six years of meaningful impact."'
+  },
+  37: {
+    title: 'Year Thirty-Seven - Wisdom Peak',
+    description: 'Thirty-seven years of wisdom accumulated! Approaching life with deep understanding, patience, and grace. This year celebrated the beauty of maturity, the power of experience, and the peace of self-knowledge.',
+    quote: '"Thirty-seven years of enlightened wisdom."'
+  },
+  38: {
+    title: 'Year Thirty-Eight - Thriving Forward',
+    description: 'Thirty-eight incredible years! Living with purpose, passion, and power. This year celebrated all you\'ve become and all you continue to be - strong, wise, accomplished, and ready for whatever comes next.',
+    quote: '"Thirty-eight years of unstoppable brilliance!"'
   },
 };
 
