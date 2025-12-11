@@ -3,30 +3,30 @@ import React, { useRef, useEffect, useState } from 'react';
 const NUMBERS = Array.from({ length: 22 }, (_, i) => i + 1);
 const TOTAL_NUMBERS = 22;
 
-// Add image URLs here for each number
+// Real birthday images - rotating through available photos
 const IMAGE_PLACEHOLDERS: Record<number, string> = {
-  1: 'https://picsum.photos/seed/1/400/400',
-  2: 'https://picsum.photos/seed/2/400/400',
-  3: 'https://picsum.photos/seed/3/400/400',
-  4: 'https://picsum.photos/seed/4/400/400',
-  5: 'https://picsum.photos/seed/5/400/400',
-  6: 'https://picsum.photos/seed/6/400/400',
-  7: 'https://picsum.photos/seed/7/400/400',
-  8: 'https://picsum.photos/seed/8/400/400',
-  9: 'https://picsum.photos/seed/9/400/400',
-  10: 'https://picsum.photos/seed/10/400/400',
-  11: 'https://picsum.photos/seed/11/400/400',
-  12: 'https://picsum.photos/seed/12/400/400',
-  13: 'https://picsum.photos/seed/13/400/400',
-  14: 'https://picsum.photos/seed/14/400/400',
-  15: 'https://picsum.photos/seed/15/400/400',
-  16: 'https://picsum.photos/seed/16/400/400',
-  17: 'https://picsum.photos/seed/17/400/400',
-  18: 'https://picsum.photos/seed/18/400/400',
-  19: 'https://picsum.photos/seed/19/400/400',
-  20: 'https://picsum.photos/seed/20/400/400',
-  21: 'https://picsum.photos/seed/21/400/400',
-  22: 'https://picsum.photos/seed/22/400/400',
+  1: 'https://i.ibb.co/PsyvxQsV/mom-1.webp',
+  2: 'https://i.ibb.co/Y4jrvb7z/mom-2.webp',
+  3: 'https://i.ibb.co/1GxTsmnb/mom-3.webp',
+  4: 'https://i.ibb.co/YSGKFVX/mom-4.webp',
+  5: 'https://i.ibb.co/3yJcF0FJ/mom-5.webp',
+  6: 'https://i.ibb.co/nsXKh4bm/mom-6.webp',
+  7: 'https://i.ibb.co/ymyvPQ9N/mom-7.webp',
+  8: 'https://i.ibb.co/rff6xdsJ/mom-8.webp',
+  9: 'https://i.ibb.co/chbjQzzX/mom-12.webp',
+  10: 'https://i.ibb.co/S7mqwfYg/mom-13.webp',
+  11: 'https://i.ibb.co/qYHxV00Y/mom-14.webp',
+  12: 'https://i.ibb.co/PsyvxQsV/mom-1.webp',
+  13: 'https://i.ibb.co/Y4jrvb7z/mom-2.webp',
+  14: 'https://i.ibb.co/1GxTsmnb/mom-3.webp',
+  15: 'https://i.ibb.co/YSGKFVX/mom-4.webp',
+  16: 'https://i.ibb.co/3yJcF0FJ/mom-5.webp',
+  17: 'https://i.ibb.co/nsXKh4bm/mom-6.webp',
+  18: 'https://i.ibb.co/ymyvPQ9N/mom-7.webp',
+  19: 'https://i.ibb.co/rff6xdsJ/mom-8.webp',
+  20: 'https://i.ibb.co/chbjQzzX/mom-12.webp',
+  21: 'https://i.ibb.co/S7mqwfYg/mom-13.webp',
+  22: 'https://i.ibb.co/qYHxV00Y/mom-14.webp',
 };
 
 // Add text notes for each number - Birthday Journey from Year 1 to Year 22
